@@ -1,0 +1,40 @@
+---
+layout: base
+---
+<div class="bg-light border-bottom py-4">
+	<div class="container">
+		<h1 class="mb-0">{{ title }}</h1>
+		<p class="text-meta text-tertiary-3 mb-3">
+			<a class="p-author h-card" href="{{ meta.url }}">{{ meta.name }}</a> |
+			<a class="u-url" href="{% if redirect %}{{ redirect }}{% else %}{{ url }}{% endif %}">
+			<time class="dt-published" datetime="{{ date }}">{{ date | dateUTC: "MMMM DD, YYYY" }}</time></a>
+		</p>
+
+		{% for link in links %}
+		<a class="link link-chip mb-2" href="{{ link.url }}">
+			<i class="link-img material-icons">link</i>
+			<span class="link-title">{{ link.name }}</span>
+		</a>
+		{% endfor %}
+	</div>
+</div>
+
+<article class="container mt-3 mb-5">
+	<div class="text">
+		{{ content | safe }}
+	</div>
+</article>
+
+{% if sources and sources.size > 0 %}
+<div class="container mb-5">
+	<h3>Source Citations</h3>
+	<ol>
+		{% for source in sources %}
+		<li id="{{ source.id }}" class="mb-3">
+			<span><b>"{{ source.name }}"</b>, by {{ source.author }}</span><br>
+			<small><a href="{{ source.url }}">{{ source.url }}</a></small>
+		</li>
+		{% endfor %}
+	</ol>
+</div>
+{% endif %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Redirecting&hellip;</title>
+<link rel="canonical" href="{{ link }}" />
+<script>location="{{ link }}";</script>
+<meta http-equiv="refresh" content="0; URL='{{ link }}'" />
+<meta name="robots" content="noindex" />
+{% if image %}
+<meta property="og:title" content="{{ page.fileSlug }}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="{{ meta.domainurl }}{{ page.url }}"/>
+<meta property="og:image" content="{{ image }}"/>
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="{{ meta.name }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ page.fileSlug }}">
+<meta name="twitter:image" content="{{ image }}">
+<meta name="twitter:creator" content="@fennifith">
+<meta name="twitter:site" content="@fennifith">
+{% endif %}
+</head>
+<body>
+Redirecting to <a href="{{ link }}">{{ link }}</a>.
+</body>
+</html>

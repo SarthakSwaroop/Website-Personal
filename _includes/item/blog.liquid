@@ -1,0 +1,20 @@
+{% assign url = blog.url %}
+{% if blog.data.redirect %}{% assign url = blog.data.redirect %}{% endif %}
+
+<div class="py-3">
+	<div class="mb-1" style="font-size: 1.1em;">
+		<a class="text-secondary" href="{{ url }}">
+			{% if blog.data.redirect %}
+			{% assign domain = blog.data.redirect | split: '/' %}
+			&#x1f517; {{ blog.data.title }} | {{ domain[2] }}
+			{% else %}
+			{{ blog.data.title }}
+			{% endif %}
+		</a>
+		&mdash;
+		<time datetime="{{ blog.date }}">{{ blog.date | dateUTC: "MMM DD" }}</time>
+	</div>
+	<div>
+		<span>{{ blog.data.description }}</span>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	{% include head.liquid %}
+</head>
+<body class="{% if nav %}nav-container {% endif %}footer-container">
+	{{ content | safe }}
+
+	<script type="text/javascript">
+		// prevent install prompt display
+		window.addEventListener('beforeinstallprompt', function(e) {
+			return e.preventDefault();
+		});
+
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/sw.js', {scope: '/'})
+				.then(function() {
+					console.log("Service Worker Registered");
+				});
+		}
+	</script>
+</body>
+</html>

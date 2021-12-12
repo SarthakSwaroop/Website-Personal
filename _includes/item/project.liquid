@@ -1,0 +1,26 @@
+{% assign url = "/projects/" | append: project.id %}
+<div class="card h-100" onclick="location.href = '{{ url }}';">
+	<a class="card-title" style="font-size: 1em;" href="{{ url }}">{{ project.title }}</a>
+	<div class="card-body" style="font-size: 0.9em;">
+		<span>{{ project.repo.description }}</span>
+		{% if large and project.screenshots.length > 0 %}
+		<div class="pt-3" style="overflow-x: auto;white-space: nowrap;">
+			{% for screenshot in project.screenshots %}
+			<img class="mr-3 shadow-light rounded" height="250px" src="{{ screenshot }}" />
+			{% endfor %}
+		</div>
+		{% endif %}
+	</div>
+	<div class="card-actions">
+		{% if project.repo.websiteUrl %}
+		<a class="mr-2" href="{{ project.repo.websiteUrl }}">
+			{% if project.repo.websiteUrl contains "play.google.com" %}Google Play
+			{% elsif project.repo.websiteUrl contains "jitpack.io" %}JitPack
+			{% elsif project.repo.websiteUrl contains "bintray.com" %}Bintray
+			{% else %}Website
+			{% endif %}
+		</a>
+		{% endif %}
+		<a class="mr-2" href="{{ project.repo.url }}">Git Repo</a>
+	</div>
+</div>

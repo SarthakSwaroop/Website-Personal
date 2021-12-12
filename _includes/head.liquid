@@ -1,0 +1,74 @@
+<meta charset="utf-8">
+
+{% assign separator = " | " %}
+{% assign head_title = meta.name %}
+{% if title %}
+{% assign head_title = title | append: separator | append: meta.name %}
+{% elsif renderData.title %}
+{% assign head_title = renderData.title | append: separator | append: meta.name %}
+{% endif %}
+
+{% assign head_description = meta.description %}
+{% if description %}
+{% assign head_description = description | xml_escape %}
+{% elsif renderData.description %}
+{% assign head_description = renderData.description | xml_escape %}
+{% endif %}
+
+{% assign head_icon = meta.domainurl | append: meta.icon %}
+{% if icon %}{% assign head_icon = icon %}{% endif %}
+
+{% assign head_image = meta.domainurl | append: meta.image %}
+{% if image %}{% assign head_image = image %}{% endif %}
+
+<meta name="description" content="{{ head_description }}">
+<meta name="author" content="{{ meta.author }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<title>{{ head_title }}</title>
+
+<meta name="theme-color" content="#FFFFFF">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="/manifest.json">
+
+<meta name="application-name" content="{{ meta.name }}">
+<meta name="msapplication-TileColor" content="#FFFFFF">
+<meta name="msapplication-TileImage" content="/images/favicon-144.png">
+<meta name="msapplication-tooltip" content="{{ meta.description }}">
+<meta name="msapplication-config" content="/ieconfig.xml">
+
+<link rel="apple-touch-icon" sizes="70x70" href="/images/favicon-70.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/favicon-144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/favicon-152.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="{{ icon | default: '/images/favicon-192.png' }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ icon | default: '/images/favicon-32.png' }}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ icon | default: '/images/favicon-96.png' }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ icon | default: '/images/favicon-16.png' }}">
+<link rel="shortcut icon" href="{{ icon | default: '/favicon.ico' }}">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="white">
+<meta name="apple-mobile-web-app-title" content="{{ meta.name }}">
+
+<link href="//fonts.googleapis.com/css?family=Crete+Round|Roboto|Montserrat&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="/css/styles.css" rel="stylesheet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ head_title }}">
+<meta name="twitter:description" content="{{ head_description }}">
+<meta name="twitter:image" content="{{ head_icon }}">
+<meta name="twitter:creator" content="@fennifith">
+<meta name="twitter:site" content="@fennifith">
+
+<meta name="og:title" content="{{ head_title }}">
+<meta name="og:type" content="website">
+<meta name="profile:first_name" content="James">
+<meta name="profile:last_name" content="Fenn">
+<meta name="profile:username" content="fennifith">
+<meta name="og:image" content="{{ head_image }}">
+<meta name="og:url" content="{{ meta.domainurl }}{{ page.url | url }}">
+<meta name="og:description" content="{{ head_description }}">
+<meta name="og:locale" content="en_US">
+<meta name="og:site_name" content="{{ meta.name }}">
+
+<link href="//unpkg.com/prism-themes@1.5.0/themes/prism-ghcolors.css" rel="stylesheet">

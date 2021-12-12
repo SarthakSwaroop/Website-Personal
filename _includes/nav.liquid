@@ -1,0 +1,15 @@
+{% if nav %}
+<nav class="nav">
+	<a class="nav-item{% if page.url == "/" %} active{% endif %}" href="/">
+		<i class="nav-item-img material-icons">home</i>
+		<span class="nav-item-title">Home</span>
+	</a>
+	{% for item in nav.pages %}
+	{% assign isCurrentPage = page.url | starts_with: item.url %}
+	<a class="nav-item{% if isCurrentPage %} active{% endif %}" href="{{ item.url }}">
+		<i class="nav-item-img material-icons">{{ item.icon }}</i>
+		<span class="nav-item-title">{{ item.title }}</span>
+	</a>
+	{% endfor %}
+</nav>
+{% endif %}

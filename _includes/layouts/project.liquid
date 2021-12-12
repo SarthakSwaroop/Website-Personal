@@ -1,0 +1,147 @@
+---
+---
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	{% assign project = git.projects | where: 'id', page.fileSlug | first %}
+	{% include head, title: project.title, description: project.repo.description, icon: project.icon %}
+</head>
+<body class="nav-container footer-container">
+	{% include nav %}
+
+<div class="bg-secondary py-5">
+	<div class="container text-center">
+		<h1 class="text-light" style="text-shadow: 0 0 30px var(--accent);">{{ project.title }}</h1>
+		<p class="mt-0 text-light-2">{{ project.repo.description }}</p>
+	</div>
+
+	<div class="mt-2 text-center">
+		<a class="link link-chip mt-2" href="{{ project.repo.url }}">
+			<img class="link-img" src="https://jfenn.me/images/ic/git.png"/>
+			<span class="link-title">Git Repo</span>
+		</a>
+		<a class="link link-chip mt-2" href="{{ project.repo.url }}/issues">
+			<i class="link-img material-icons">bug_report</i>
+			<span class="link-title">Bug Tracker</span>
+		</a>
+		{% if project.repo.websiteUrl %}
+		<a class="link link-chip mt-2" href="{{ project.repo.websiteUrl }}">
+			{% if project.repo.websiteUrl contains "play.google.com" %}
+			<img class="link-img" src="https://jfenn.me/images/ic/play-store.svg"/>
+			<span class="link-title">Google Play</span>
+			{% else %}
+			<i class="link-img material-icons">link</i>
+			<span class="link-title">Website</span>
+			{% endif %}
+		</a>
+		{% endif %}
+	</div>
+</div>
+<div class="bg-accent-5 py-3">
+	<div class="container">
+		<div class="row pt-3">
+			<div class="col col-12 col-md-6 mb-3">
+				<div class="card card-accent h-100" onclick="location.href = '/community/';">
+					<a class="card-title" href="/community/">
+						<i class="material-icons">people</i>
+						Contributing
+					</a>
+					<div class="card-body">
+						<span>Interested in working with this project or volunteering to help? Get started here!</span>
+					</div>
+				</div>
+			</div>
+			<div class="col col-12 col-md-6 mb-3">
+				<div class="card card-accent h-100" onclick="location.href = '/contact/';">
+					<a class="card-title" href="/contact/">
+						<i class="material-icons">email</i>
+						Contact Me
+					</a>
+					<div class="card-body">
+						<span>Have any questions or concerns? Don't hesitate to reach out!</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% if project.hasWiki %}
+<div class="bg-lighter py-4">
+	<div class="container pb-2">
+		<div class="row">
+			<div class="col-12 col-md-auto align-self-center text-center">
+				<i class="material-icons" style="font-size: 100px;">book</i>
+			</div>
+			<div class="col-12 col-md-8 align-self-center text-center text-md-left">
+				<h5 class="mb-2">Looking for documentation?</h5>
+				<p class="mt-0 mb-4">Find helpful information about this project - tutorials, guides, and more!</p>
+				<a class="btn btn-primary" href="./wiki/">Read the Wiki <i class="material-icons" style="padding-bottom: 0.1rem;">chevron_right</i></a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+{% if tags contains "project-deprecated" %}
+<div class="bg-danger-5 py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-auto align-self-center text-center">
+				<i class="material-icons text-danger" style="font-size: 100px;">error_outline</i>
+			</div>
+			<div class="col-12 col-md-8 align-self-center text-center text-md-left">
+				<h5 class="text-tertiary-1">This project is deprecated!</h5>
+				<p>Pull requests may still be accepted, but I am no longer actively maintaining it and proper functionality is not guaranteed.</p>
+				<p>If you would like to fork this project and continue development, please <a href="/contact/">contact me</a> so I can link to your fork from this page.</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+{% capture lastSection %}
+<div class="row">
+	<div class="col-12 col-md-auto align-self-center text-center">
+		<i class="material-icons" style="font-size: 100px;">source</i>
+	</div>
+	<div class="col-12 col-md-8 align-self-center text-center text-md-left">
+		<h3 class="mb-2">Open Source</h3>
+		<p class="mt-0 mb-4">Browse the source code, suggest changes, or <a href="/community/">develop it yourself</a>!</p>
+		<a class="btn btn-primary" href="{{ project.repo.url }}">Git Repo <i class="material-icons" style="padding-bottom: 0.1rem;">chevron_right</i></a>
+	</div>
+</div>
+
+<div id="readme" class="card bg-light border-dark mt-5">
+	<div class="py-2 px-4 bg-dark">
+		<a class="link" href="{{ project.repo.url }}">
+			<i class="link-img material-icons">book</i>
+			<span class="link-title">README.md</span>
+		</a>
+	</div>
+	<div class="py-2 px-4 text">
+		{{ project.readme | markdownify }}
+	</div>
+</div>
+{% endcapture %}
+
+{% assign contents = content | split: '===' %}
+{% if contents.size > 1 %}
+{% assign sections = content | append: '===' | append: lastSection | split: '===' %}
+{% else %}
+{% assign sections = lastSection | split: '===' %}
+{% endif %}
+
+{% for section in sections %}
+<div class="bg-{% cycle 'neutral', 'lighter' %} py-4">
+	<div class="container">
+		{{ section | safe }}
+	</div>
+</div>
+{% endfor %}
+
+{% include footer %}
+
+</body>
+</html>

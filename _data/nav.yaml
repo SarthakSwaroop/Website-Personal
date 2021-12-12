@@ -1,0 +1,13 @@
+pages:
+  - icon: notes
+    title: Blog
+    url: /blog/
+  - icon: code
+    title: Projects
+    url: /projects/
+  - icon: people
+    title: Community
+    url: /community/
+  - icon: date_range
+    title: Now
+    url: /now/

@@ -1,0 +1,57 @@
+{
+	"domainurl": "https://jfenn.me",
+    "name": "James Fenn",
+    "email": "me@jfenn.me",
+    "description": "Writer of bad puns and slightly better software. This website contains information about my adventures in programming, current projects, and me.",
+	"icon": "/images/me.jpg",
+	"image": "/images/headers/snowytrees.jpg",
+	"links": {
+		"twitter": "https://twitter.com/fennifith",
+		"fediverse": "https://is.a.horrific.dev/@james",
+		"twitch": "https://twitch.tv/fennifith",
+		"keybase": "https://keybase.io/jafenn",
+		"googleplay": "https://play.google.com/store/apps/dev?id=5937321955284727208",
+		"telegram": "https://t.me/fennifith",
+		"linkedin": "https://www.linkedin.com/in/james-fenn-3390b8167/",
+		"github": "https://github.com/fennifith",
+		"git": "https://code.horrific.dev/james",
+		"bintray": "https://bintray.com/18jafenn90",
+		"liberapay": "https://liberapay.com/fennifith/",
+		"paypal": "https://paypal.me/fennifith"
+	},
+	"categories": [{
+		"id": "project-app",
+		"title": "Apps & Websites",
+		"desc": "Published tools and products for a wide audience."
+	},{
+		"id": "project-tool",
+		"title": "Tools & Libraries",
+		"desc": "Smaller projects used in other work, intended for myself and other developers."
+	},{
+		"id": "project-fun",
+		"title": "Just for Fun",
+		"desc": "Weird tools or programs that have no real purpose."
+	},{
+		"id": "project-deprecated",
+		"title": "Deprecated",
+		"desc": "Things I've stopped working on or no longer maintain."
+	}],
+	"repos": [
+		"gitea@code.horrific.dev:james/metronome",
+		"gitea@code.horrific.dev:james/dot.css",
+		"gitea@code.horrific.dev:james/git-rest-wrapper",
+		"gitea@code.horrific.dev:james/ktordocs",
+		"gitea@code.horrific.dev:james/DungeonGL",
+		"fennifith/Attribouter",
+		"fennifith/Alarmio",
+		"fennifith/AndroidUtils",
+		"fennifith/declarativ",
+		"fennifith/mdjavadoc",
+		"fennifith/ExceptionalTraveler",
+		"fennifith/Status",
+		"fennifith/Scrurl",
+		"fennifith/ColorPickerDialog",
+		"fennifith/Crasher",
+		"fennifith/Pasta-for-Spotify"
+	]
+}
